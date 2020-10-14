@@ -12,7 +12,7 @@ catkin_package(
    CATKIN_DEPENDS roscpp rospy std_msgs
 )
 
-include_directories(include  ${catkin_INCLUDE_DIRS})
+include_directories(../include  ${catkin_INCLUDE_DIRS})
 
 add_executable(test_node main.cpp)
 target_link_libraries(test_node ${catkin_LIBRARIES})
