@@ -31,13 +31,15 @@ before_install:
 - sudo env "PATH=$PATH" make
 - sudo cp *.a /usr/lib
 - cd -
-  
-script:
-- cd plain_cmake
-- mkdir build && cd build
-- cmake ..
-- make
-- ./test/test_all
 
-after_failure:
-  - lynx -dump /home/travis/build/results.html;
+jobs:
+   include:
+     - stage: Building
+       script:
+         cd plain_cmake
+         mkdir build && cd build
+         cmake ..
+         make
+     - stage: Test
+       script: ./test/test_all
+
