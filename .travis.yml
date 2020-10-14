@@ -12,8 +12,6 @@ addons:
   apt:
     packages:
       - lynx
-
-
 #git:
   # Remove log info on cloning (default: false)
   #quiet: true
@@ -32,16 +30,13 @@ before_install:
 - sudo cp *.a /usr/lib
 - cd -
 
-#jobs:
-#   include:
-
 stages:
  - name: Building
    script:
-	 - cd plain_cmake
-	 - mkdir build && cd build
-	 - cmake ..
-	 - make
+     - cd plain_cmake
+     - mkdir build && cd build
+     - cmake ..
+     - make
  - name: Test
    script: ./test/test_all
 
