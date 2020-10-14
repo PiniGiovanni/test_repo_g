@@ -1,0 +1,21 @@
+{
+  "scripts": {
+    "test": "mocha"
+  },
+    "reporter": "mocha-xunit-reporter",
+    "reporterOptions": {
+        "mochaFile": "./test_report.xml"
+    },
+  "name": "node_js",
+  "version": "1.0.0",
+  "description": "Test node js ",
+  "main": "hello_world.js",
+  "directories": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0"
+  }
+}
