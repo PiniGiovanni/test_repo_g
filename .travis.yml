@@ -1,40 +1,15 @@
-language: cpp
+language: node_js
+node_js:
+  - node # Latest stable (can also use 14, 13...)
 
-compiler:
-- gcc
-
-sudo: require
-
-os:
-- linux
-
-addons:
-  apt:
-    packages:
-      - lynx
-
-
-#git:
-  # Remove log info on cloning (default: false)
-  #quiet: true
-  # Clone git submodules (default: true)
-  # submodules: false
       
 before_install:
-- echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
-- git lfs pull
+- cd node_js
+- npm install chai
+- npm install mocha
+- npm install mocha-xunit-reporter
 
-- sudo apt-get install libgtest-dev
-- cd /usr/src/gtest
-- sudo env "PATH=$PATH" cmake CMakeLists.txt
-- sudo env "PATH=$PATH" make
-- sudo cp *.a /usr/lib
-- cd -
   
 script:
-- cd plain_cmake
-- mkdir build && cd build
-- cmake ..
-- make
-- ./test/test_all
+- mocha test --reporter mocha-xunit-reporter
 
