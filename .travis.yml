@@ -33,9 +33,15 @@ before_install:
 - sudo env "PATH=$PATH" make
 - sudo cp *.a /usr/lib
 - cd -
-  
-script:
-- cd plain_cmake
-- mkdir build && cd build
-- cmake ..
-- make
+
+jobs:
+  include:
+    - stage: build
+      script:
+       - cd plain_cmake
+       - mkdir build && cd build
+       - cmake ..
+       - make
+   - stage: test
+      script:
+         - ./test/test_all
