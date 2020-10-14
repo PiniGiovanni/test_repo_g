@@ -12,12 +12,13 @@ addons:
   apt:
     packages:
       - lynx
+
+
 #git:
   # Remove log info on cloning (default: false)
   #quiet: true
   # Clone git submodules (default: true)
   # submodules: false
-
       
 before_install:
 - echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
@@ -29,14 +30,11 @@ before_install:
 - sudo env "PATH=$PATH" make
 - sudo cp *.a /usr/lib
 - cd -
-
-stages:
- - name: Building
-   script:
-     - cd plain_cmake
-     - mkdir build && cd build
-     - cmake ..
-     - make
- - name: Test
-   script: ./test/test_all
+  
+script:
+- cd plain_cmake
+- mkdir build && cd build
+- cmake ..
+- make
+- ./test/test_all
 
