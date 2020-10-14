@@ -13,8 +13,7 @@ add_executable(test_all class_A_test.cpp)
 
 target_link_libraries(test_all gtest
                                gtest_main
+                               ${CMAKE_THREAD_LIBS_INIT}
                                testlib)
-
-link_libraries("-pthread")
 
 add_test(test_all test_all)
