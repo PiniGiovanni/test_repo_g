@@ -30,7 +30,8 @@ before_install:
 - sudo apt-get install libgtest-dev
 - cd /usr/src/gtest
 - sudo env "PATH=$PATH" cmake CMakeLists.txt
-- sudo env "PATH=$PATH" make install
+- sudo env "PATH=$PATH" make
+- sudo cp *.a /usr/lib
   
 script:
 - cd plain_cmake
