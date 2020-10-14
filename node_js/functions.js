@@ -6,6 +6,6 @@ module.exports = {
 	},
 	
 	echo: function(x) { 
-		return 0
+		return x
 	}
 }
