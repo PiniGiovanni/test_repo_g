@@ -3,8 +3,6 @@
 /****************************/
 /****************************/
 
-make compile fail
-
 int main(int argc, char **argv) {
 
 
