@@ -29,7 +29,7 @@ before_install:
 
 - sudo apt-get install libgtest-dev
 - cd /usr/src/gtest
-- sudo cmake
+- cmake
 - sudo make install
   
 script:
