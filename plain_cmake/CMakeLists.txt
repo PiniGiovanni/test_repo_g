@@ -4,4 +4,4 @@ add_executable(test_main main.cpp )
 
 add_library(testlib class_A.cpp)
 
-add_subdirectory(test)
+#add_subdirectory(test)

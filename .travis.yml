@@ -8,10 +8,10 @@ compiler:
 os:
 - linux
 
-addons:
-  apt:
-    packages:
-      - libgtest-dev
+#addons:
+#  apt:
+#    packages:
+#      - libgtest-dev
 #    sources:
 #      - ubuntu-toolchain-r-test
 
