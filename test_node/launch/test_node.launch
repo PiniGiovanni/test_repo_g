@@ -1,0 +1,10 @@
+<!-- Launcher file all nodes required for Gondola Controls -->
+<launch>
+	<!-- Set "output" tag of all nodes at once -->
+    <env name="NODES_OUTPUT_TYPE" value="log" />
+
+    <rosparam command="load" file="$(find test_node)/conf/test_param.yaml" />
+
+    <node name="test_node" pkg="test_node" type="test_node" output="$(optenv NODES_OUTPUT_TYPE screen)"/> 
+    
+</launch>
