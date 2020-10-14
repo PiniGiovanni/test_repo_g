@@ -36,10 +36,10 @@ jobs:
    include:
      - stage: Building
        script:
-         cd plain_cmake
-         mkdir build && cd build
-         cmake ..
-         make
+         - cd plain_cmake
+         - mkdir build && cd build
+         - cmake ..
+         - make
      - stage: Test
        script: ./test/test_all
 
