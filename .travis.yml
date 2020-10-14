@@ -3,15 +3,31 @@ language: cpp
 compiler:
 - gcc
 
+#sudo: require
+
 os:
 - linux
 
-before_install:
-- echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
-- git lfs pull
+#addons:
+#  apt:
+#    sources:
+#      - ubuntu-toolchain-r-test
+#    packages:
+#      - cmake
 
 #git:
   # Remove log info on cloning (default: false)
   #quiet: true
   # Clone git submodules (default: true)
   # submodules: false
+
+      
+before_install:
+- echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
+- git lfs pull
+  
+script:
+- cd plain_cmake
+- mkdir build && cd build
+- cmake ..
+- make
