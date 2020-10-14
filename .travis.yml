@@ -32,6 +32,7 @@ before_install:
 - sudo env "PATH=$PATH" cmake CMakeLists.txt
 - sudo env "PATH=$PATH" make
 - sudo cp *.a /usr/lib
+- cd
   
 script:
 - cd plain_cmake
