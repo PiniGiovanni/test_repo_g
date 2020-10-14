@@ -11,9 +11,10 @@ link_directories(${CMAKE_SOURCE_DIR}/build/)
 
 add_executable(test_all class_A_test.cpp)
 
-target_link_libraries(test_all pthread
-							   gtest
+target_link_libraries(test_all gtest
                                gtest_main
                                testlib)
+
+link_libraries("-pthread")
 
 add_test(test_all test_all)
