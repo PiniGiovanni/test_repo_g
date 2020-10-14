@@ -3,7 +3,7 @@ language: cpp
 compiler:
 - gcc
 
-#sudo: require
+sudo: require
 
 os:
 - linux
@@ -26,6 +26,7 @@ os:
 before_install:
 - echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
 - git lfs pull
+- sudo apt-get install libgtest-dev
   
 script:
 - cd plain_cmake
