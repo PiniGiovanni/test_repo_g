@@ -32,14 +32,16 @@ before_install:
 - sudo cp *.a /usr/lib
 - cd -
 
-jobs:
-   include:
-     - stage: Building
-       script:
-         - cd plain_cmake
-         - mkdir build && cd build
-         - cmake ..
-         - make
-     - stage: Test
-       script: ./test/test_all
+#jobs:
+#   include:
+
+stages:
+ - name: Building
+   script:
+	 - cd plain_cmake
+	 - mkdir build && cd build
+	 - cmake ..
+	 - make
+ - name: Test
+   script: ./test/test_all
 
