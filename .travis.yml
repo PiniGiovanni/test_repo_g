@@ -26,7 +26,11 @@ os:
 before_install:
 - echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
 - git lfs pull
+
 - sudo apt-get install libgtest-dev
+- cd /usr/src/gtest
+- sudo cmake
+- sudo make install
   
 script:
 - cd plain_cmake
