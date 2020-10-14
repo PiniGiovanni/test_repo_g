@@ -8,12 +8,13 @@ compiler:
 os:
 - linux
 
-#addons:
-#  apt:
+addons:
+  apt:
+    packages:
+      - libgtest-dev
 #    sources:
 #      - ubuntu-toolchain-r-test
-#    packages:
-#      - cmake
+
 
 #git:
   # Remove log info on cloning (default: false)
