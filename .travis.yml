@@ -51,6 +51,10 @@ install:
 script:
   - source /opt/ros/$ROS_DISTRO/setup.bash
   - ls -la ~/catkin_ws/src
+  - ls -la ~/catkin_ws/src/test_repo_g/
+  - ls -la ~/catkin_ws/src/test_repo_g/test_node
+  - ls -la ~/catkin_ws/src/test_repo_g/test_node/src
+  - cat ~/catkin_ws/src/test_repo_g/test_node/src/main.cpp
   - cd ~/catkin_ws
   - catkin_make
   #- catkin_make $( [ -f $CATKIN_OPTIONS ] && cat $CATKIN_OPTIONS )
