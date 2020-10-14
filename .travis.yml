@@ -8,12 +8,10 @@ sudo: require
 os:
 - linux
 
-#addons:
-#  apt:
-#    packages:
-#      - libgtest-dev
-#    sources:
-#      - ubuntu-toolchain-r-test
+addons:
+  apt:
+    packages:
+      - lynx
 
 
 #git:
@@ -40,3 +38,6 @@ script:
 - cmake ..
 - make
 - ./test/test_all
+
+after_failure:
+  - lynx -dump /home/travis/build/results.html;
