@@ -44,7 +44,7 @@ jobs:
           when: always
 
       - store_test_results:
-          path: ./plain_cmake/build/test/junit
+          path: ./plain_cmake/build/test
 
 workflows:
   main:
