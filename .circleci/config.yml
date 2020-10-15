@@ -24,7 +24,9 @@ jobs:
       
       - run:
           name: test node
-          command: npm test
+          command: |
+             cd node_js
+             npm test
 
       - store_test_results:
           path: ./node_js
