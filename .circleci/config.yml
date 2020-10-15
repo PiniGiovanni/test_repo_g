@@ -10,15 +10,14 @@ jobs:
       - checkout
       - run:
           name: build
-          command: ls -la
+          command: |
+             cd plain_cmake
+             mkdir build && cd build
+             cmake ..
+             make
 
 #      - run:
-#          name: build
-#          command: source /opt/ros/melodic/setup.bash && catkin build
-
-#      - run:
-#          name: test
-#          command: source /opt/ros/melodic/setup.bash && catkin run_tests && catkin_test_results
+#          name: build gtest
 
 workflows:
   main:
