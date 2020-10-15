@@ -24,8 +24,8 @@ jobs:
              npm install -g mocha chai
              npm install chai
              npm install -g mocha-xunit-reporter
-             npm install mocha-xunit-reporter --save-dev
-             mocha test --reporter mocha-xunit-reporter --reporter-options mochaFile=test-results.xml
+             npm install mocha-junit-reporter --save-dev
+             mocha test --reporter mocha-junit-reporter --reporter-options mochaFile=test-results.xml
              
       - run:
           name: test standalone
@@ -85,4 +85,4 @@ jobs:
 workflows:
   main:
     jobs:
-      - cmake_compile
+      - nodejs
