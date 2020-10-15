@@ -25,14 +25,16 @@ jobs:
              npm install mocha
              npm install mocha-xunit-reporter
              mocha test
-      
-      - run:
-          name: test node
-          command: |
-             cd node_js
-             npm test
              ls -la
              ls -la test
+      
+#      - run:
+#          name: test node
+#          command: |
+#             cd node_js
+#             npm test
+#             ls -la
+#             ls -la test
 
       - store_test_results:
           path: node_js
