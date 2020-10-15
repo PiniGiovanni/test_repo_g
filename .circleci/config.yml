@@ -32,21 +32,37 @@ jobs:
               cd ./plain_cmake/build/test/
               mkdir junit
               ./test_all --gtest_output="xml:test-results.xml"
-              cp test-results.xml ./junit/
-
-      - run:
-          name: list results
-          command: |
-             ls -la ./plain_cmake/ 
-             ls -la ./plain_cmake/build
-             ls -la ./plain_cmake/build/test
-             ls -la ./plain_cmake/build/test/junit
-          when: always
-
+              
       - store_test_results:
           path: ./plain_cmake/build/test
+
+  nodejs:
+  
+    machine:
+       windows
+  
+    steps:
+      - checkout
+      - run:
+          name: install packages
+          command: |     
+             cd node_js
+             npm install chai
+             npm install mocha
+             npm install mocha-xunit-reporter
+      
+      - run:
+          name: test node
+          command: |
+             mocha test --reporter mocha-xunit-reporter
+
+      - store_test_results:
+          path: ./node_js
+
+
 
 workflows:
   main:
     jobs:
-      - cmake_compile
+      #- cmake_compile
+      - nodejs
