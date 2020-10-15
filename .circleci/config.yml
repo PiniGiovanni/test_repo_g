@@ -30,11 +30,11 @@ jobs:
           name: run tests
           command: |
               ./plain_cmake/build/test/test_all --gtest_output="xml:test-results.xml"
-          when: always
 
       - run:
           name: list results
           command: ls -la ~/plain_cmake/build/test
+          when: always
 
       - store_test_results:
           path: ~/plain_cmake/build/test/test-results.xml
