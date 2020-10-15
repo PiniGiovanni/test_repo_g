@@ -15,17 +15,18 @@ jobs:
     steps:
       - checkout
       - run:
-          name: install packages
+          name: running tests
           command: |     
              cd node_js
              npm install chai
              npm install mocha
              npm install mocha-xunit-reporter
-      
-      - run:
-          name: test node
-          command: |
              mocha test --reporter mocha-xunit-reporter
+      
+#      - run:
+#          name: test node
+#          command: |
+#             mocha test --reporter mocha-xunit-reporter
 
       - store_test_results:
           path: ./node_js
