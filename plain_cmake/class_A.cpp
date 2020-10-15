@@ -5,5 +5,5 @@ int A::echo(int i){
 }
 
 int A::add(int i, int j){
-	return i+j+1;
+	return i+j;
 }
