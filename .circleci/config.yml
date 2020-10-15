@@ -29,7 +29,8 @@ jobs:
       - run:
           name: run tests
           command: |
-              ./plain_cmake/build/test/test_all --gtest_output="xml:test-results.xml"
+              mkdir -p /plain_cmake/build/test/junit
+              ./plain_cmake/build/test/test_all --gtest_output="xml:junit/test-results.xml"
 
 #      - run:
 #          name: list results
