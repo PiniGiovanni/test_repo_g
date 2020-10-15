@@ -26,8 +26,9 @@ jobs:
              cmake ..
              make
 
-#      - run:
-#          name: build gtest
+      - run:
+          name: run tests
+          command: ./test/test_all
 
 workflows:
   main:
