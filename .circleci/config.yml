@@ -39,6 +39,7 @@ jobs:
           command: |
              ls -la ./plain_cmake/ 
              ls -la ./plain_cmake/build
+             ls -la ./plain_cmake/build/test
              ls -la ./plain_cmake/build/test/junit
           when: always
 
