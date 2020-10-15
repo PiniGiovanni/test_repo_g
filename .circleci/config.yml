@@ -23,7 +23,6 @@ jobs:
              cd node_js
              sudo npm install -g mocha chai
              sudo npm install chai
-#npm install mocha
              sudo npm install -g mocha-xunit-reporter
              sudo npm install mocha-xunit-reporter --save-dev
              mocha test --reporter mocha-xunit-reporter --reporter-options mochaFile=test-results.xml
