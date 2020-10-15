@@ -21,10 +21,12 @@ jobs:
           name: running tests
           command: |     
              cd node_js
-             npm install chai
-             npm install mocha
-             npm install mocha-junit-reporter
-             mocha test --reporter mocha-junit-reporter --reporter-options mochaFile=test-results.xml
+             sudo npm install -g mocha chai
+             sudo npm install chai
+#npm install mocha
+             sudo npm install -g mocha-xunit-reporter
+             sudo npm install mocha-xunit-reporter --save-dev
+             mocha test --reporter mocha-xunit-reporter --reporter-options mochaFile=test-results.xml
              ls -la
              ls -la test
       
