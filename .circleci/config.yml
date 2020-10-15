@@ -24,6 +24,7 @@ jobs:
              npm install chai
              npm install mocha
              npm install mocha-xunit-reporter
+             mocha test
       
       - run:
           name: test node
@@ -31,10 +32,10 @@ jobs:
              cd node_js
              npm test
              ls -la
-             ls -la test/
+             ls -la test
 
       - store_test_results:
-          path: .
+          path: node_js
 
   cmake_compile:
   
