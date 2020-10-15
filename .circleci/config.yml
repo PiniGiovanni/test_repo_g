@@ -10,7 +10,8 @@ jobs:
       - checkout
       - run:
           name: install gtest
-          command: |      
+          command: |     
+             sudo apt-get update
              sudo apt-get install libgtest-dev
              cd /usr/src/gtest
              sudo cmake CMakeLists.txt
