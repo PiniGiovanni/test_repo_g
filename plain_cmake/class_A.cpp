@@ -1,7 +1,7 @@
 #include "class_A.h"
 
 int A::echo(int i){
-	return 0;
+	return i;
 }
 
 int A::add(int i, int j){
