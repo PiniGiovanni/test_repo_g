@@ -8,42 +8,26 @@ jobs:
   
   nodejs:
   
-#    executor:
-#      name: win/default
-#      shell: powershell.exe
-  
-    machine:
-      image: ubuntu-1604:202007-01  
+    executor:
+      name: win/default
+      shell: powershell.exe
   
     steps:
       - checkout
       - run:
-          name: install and run test
+          name: install packages
           command: |     
              cd node_js
              npm install -g mocha chai
              npm install chai
              npm install -g mocha-junit-reporter
              npm install mocha-junit-reporter --save-dev
-             mocha test --reporter mocha-junit-reporter --reporter-options mochaFile=test-results.xml
              
       - run:
-          name: test standalone
-          when: always
+          name: test
           command: |
-             mocha test
-             ls -la
-             ls -la test     
-             when: always
-             
-#      - run:
-#          name: test node
-#          command: |
-#             cd node_js
-#             mocha test --reporter mocha-xunit-reporter --reporter-options mochaFile=test-results.xml
-#             ls -la
-#             ls -la test          
-             
+             mocha test --reporter mocha-junit-reporter --reporter-options mochaFile=test-results.xml
+
       - store_test_results:
           path: node_js
 
