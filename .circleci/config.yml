@@ -32,16 +32,16 @@ jobs:
               mkdir -p ./plain_cmake/build/test/junit
               ./plain_cmake/build/test/test_all --gtest_output="xml:junit/test-results.xml"
 
-#      - run:
-#          name: list results
-#          command: |
-#             ls -la ./plain_cmake/ 
-#             ls -la ./plain_cmake/build
-#             ls -la ./plain_cmake/build/test
-#          when: always
+      - run:
+          name: list results
+          command: |
+             ls -la ./plain_cmake/ 
+             ls -la ./plain_cmake/build
+             ls -la ./plain_cmake/build/test/junit
+          when: always
 
       - store_test_results:
-          path: ./plain_cmake/build/test/
+          path: ./plain_cmake/build/test/junit
 
 workflows:
   main:
