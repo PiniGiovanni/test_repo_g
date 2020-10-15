@@ -33,9 +33,10 @@ jobs:
 
       - run:
           name: list results
-          command: ls -la ~/plain_cmake/
-          command: ls -la ~/plain_cmake/build          
-          command: ls -la ~/plain_cmake/build/test
+          command: |
+             ls -la ~/plain_cmake/ 
+             ls -la ~/plain_cmake/build
+             ls -la ~/plain_cmake/build/test
           when: always
 
       - store_test_results:
