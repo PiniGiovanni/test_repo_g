@@ -9,6 +9,15 @@ jobs:
     steps:
       - checkout
       - run:
+          name: install gtest
+          command: |      
+             sudo apt-get install libgtest-dev
+             cd /usr/src/gtest
+             sudo cmake CMakeLists.txt
+             sudo make install
+# sudo cp *.a /usr/lib
+      
+      - run:
           name: build
           command: |
              cd plain_cmake
