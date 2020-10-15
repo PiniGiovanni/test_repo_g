@@ -26,9 +26,14 @@ jobs:
              npm install -g mocha-xunit-reporter
              npm install mocha-xunit-reporter --save-dev
              mocha test --reporter mocha-xunit-reporter --reporter-options mochaFile=test-results.xml
+             
+      - run:
+          name: test standalone
+          command: |
              mocha test
              ls -la
              ls -la test     
+             when: always
              
 #      - run:
 #          name: test node
