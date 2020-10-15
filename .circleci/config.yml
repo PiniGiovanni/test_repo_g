@@ -28,7 +28,7 @@ jobs:
 
       - run:
           name: run tests
-          command: ./test/test_all
+          command: ./plain_cmake/build/test/test_all
 
 workflows:
   main:
