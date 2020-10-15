@@ -7,4 +7,4 @@ before_install:
   - docker pull ros:melodic
 
 script:
-   - docker run rosversion -d
+   - docker run -it --rm osrf/ros:melodic rosversion -d
