@@ -26,6 +26,7 @@ jobs:
       - run:
           name: test
           command: |
+             cd node_js
              mocha test --reporter mocha-junit-reporter --reporter-options mochaFile=test-results.xml
 
       - store_test_results:
