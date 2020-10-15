@@ -29,9 +29,10 @@ jobs:
       - run:
           name: run tests
           command: |
-              mkdir -p ./plain_cmake/build/test/junit
-              ./plain_cmake/build/test/test_all --gtest_output="xml:test-results.xml"
-              cp ./plain_cmake/build/test/test-results.xml  ./plain_cmake/build/test/junit
+              cd ./plain_cmake/build/test/
+              mkdir junit
+              ./test_all --gtest_output="xml:test-results.xml"
+              cp test-results.xml ./junit/
 
       - run:
           name: list results
