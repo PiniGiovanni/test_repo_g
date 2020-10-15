@@ -30,9 +30,8 @@ jobs:
           name: run tests
           command: ./plain_cmake/build/test/test_all --gtest_output="xml:test-results.xml"
 
-
       - store_test_results:
-          path: ~/plain_cmake/build/test
+          path: ~/plain_cmake/build/test/
 
 workflows:
   main:
