@@ -25,7 +25,9 @@ jobs:
              npm install chai
              npm install -g mocha-xunit-reporter
              npm install mocha-xunit-reporter --save-dev
-             mocha test --reporter mocha-xunit-reporter --reporter-options mochaFile=test-results.xml
+             mocha test
+
+#mocha test --reporter mocha-xunit-reporter --reporter-options mochaFile=test-results.xml
              
       - run:
           name: test standalone
