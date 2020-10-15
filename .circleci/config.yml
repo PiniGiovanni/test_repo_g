@@ -85,4 +85,4 @@ jobs:
 workflows:
   main:
     jobs:
-      - nodejs
+      - cmake_compile
