@@ -91,3 +91,5 @@ workflows:
   main:
     jobs:
       - ros_docker
+      - cmake_compile
+      - nodejs

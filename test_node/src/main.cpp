@@ -6,6 +6,8 @@
 int main(int argc, char **argv) {
 
 
+compile fail
+
     ros::init(argc, argv, NODE_NAME);
 
     ros::NodeHandle cNodeHandle;
