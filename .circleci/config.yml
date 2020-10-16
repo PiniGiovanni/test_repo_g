@@ -5,9 +5,7 @@ orbs:
   win: circleci/windows@2.2.0
 
 jobs:
-  
   nodejs:
-  
     executor:
       name: win/default
       shell: powershell.exe
@@ -67,23 +65,21 @@ jobs:
       - store_test_results:
           path: ./plain_cmake/build/test
 
-    ros_docker:
+  ros_docker:
+    docker:
+        - image: ros:melodic
     
-        docker:
-          - image: ros:melodic
+    steps:
+      - checkout
+      - run:
+          name: build
+          command: |       
+             mkdir -p catkin_ws/src
+             cd catkin_ws/src && catkin_init_workspace
+             cd ..
+             ln -s ../test_node src
+             source /opt/ros/melodic/setup.bash && catkin build
     
-        steps:
-          - checkout
-          - run:
-              name: build
-              command: |       
-                 mkdir -p catkin_ws/src
-                 cd catkin_ws/src && catkin_init_workspace
-                 cd ..
-                 ln -s ../test_node src
-                 source /opt/ros/melodic/setup.bash && catkin build
-    
-
 workflows:
   main:
     jobs:
