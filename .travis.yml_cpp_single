@@ -1,0 +1,28 @@
+language: cpp
+
+compiler:
+- gcc
+
+sudo: require
+
+os:
+- linux
+      
+before_install:
+- echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
+- git lfs pull
+
+- sudo apt-get install libgtest-dev
+- cd /usr/src/gtest
+- sudo env "PATH=$PATH" cmake CMakeLists.txt
+- sudo env "PATH=$PATH" make
+- sudo cp *.a /usr/lib
+- cd -
+  
+script:
+- cd plain_cmake
+- mkdir build && cd build
+- cmake ..
+- make
+- ./test/test_all
+

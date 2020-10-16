@@ -1,0 +1,10 @@
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - docker pull ros:melodic
+
+script:
+   - docker run -it ros:melodic rosversion -d
