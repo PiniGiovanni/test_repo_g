@@ -81,6 +81,7 @@ jobs:
           name: build
           command: |       
              mkdir -p catkin_ws/src
+             source /opt/ros/melodic/setup.bash
              cd catkin_ws/src && catkin_init_workspace
              cd ..
              ln -s ../test_node src
