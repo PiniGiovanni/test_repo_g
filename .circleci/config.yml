@@ -22,6 +22,7 @@ jobs:
              sudo cmake CMakeLists.txt
              sudo make
              sudo cp *.a /usr/lib
+             sudo cp *.a ~/project/
       
       - run:
           name: build
@@ -42,9 +43,10 @@ jobs:
           path: ./plain_cmake/build/test
 
       - persist_to_workspace:
-          root: public
+          root: .
           paths:
             - plain_cmake/build/test_main
+            - ./*.a
 
     
 workflows:
