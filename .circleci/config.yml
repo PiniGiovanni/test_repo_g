@@ -31,7 +31,6 @@ jobs:
              mkdir build && cd build
              cmake ..
              make
-             cp test_main ../../public/
 
       - run:
           name: run tests
@@ -45,7 +44,7 @@ jobs:
       - persist_to_workspace:
           root: public
           paths:
-            - site
+            - plain_cmake/build/test_main
 
     
 workflows:
