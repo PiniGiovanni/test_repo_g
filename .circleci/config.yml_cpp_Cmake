@@ -1,0 +1,42 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
+version: 2.1
+jobs:
+  cmake_compile:
+  
+    machine:
+      image: ubuntu-1604:202007-01
+  
+    steps:
+      - checkout
+      - run:
+          name: install gtest
+          command: |     
+             sudo apt-get update
+             sudo apt-get install libgtest-dev
+             cd /usr/src/gtest
+             sudo cmake CMakeLists.txt
+             sudo make
+             sudo cp *.a /usr/lib
+      
+      - run:
+          name: build
+          command: |
+             cd plain_cmake
+             mkdir build && cd build
+             cmake ..
+             make
+
+      - run:
+          name: run tests
+          command: |
+              cd ./plain_cmake/build/test/
+              mkdir junit
+              ./test_all --gtest_output="xml:test-results.xml"
+
+      - store_test_results:
+          path: ./plain_cmake/build/test
+
+workflows:
+  main:
+    jobs:
+      - cmake_compile
