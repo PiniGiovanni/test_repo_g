@@ -72,6 +72,14 @@ jobs:
     steps:
       - checkout
       - run:
+          name: install packages
+          command: |
+             sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main" > /etc/apt/sources.list.d/ros-latest.list'
+             wget --no-check-certificate http://packages.ros.org/ros.key -O - | sudo apt-key add -
+             sudo apt update
+             sudo apt install -y python-catkin-tools
+          
+      - run:
           name: build
           command: |       
              mkdir -p catkin_ws/src
