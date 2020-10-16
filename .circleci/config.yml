@@ -26,16 +26,17 @@ jobs:
       - run:
           name: build
           command: |
+             mkdir public
              cd plain_cmake
              mkdir build && cd build
              cmake ..
              make
+             cp test_main ../../public/
 
       - run:
           name: run tests
           command: |
               cd ./plain_cmake/build/test/
-              mkdir junit
               ./test_all --gtest_output="xml:test-results.xml"
 
       - store_test_results:
