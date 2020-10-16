@@ -2,33 +2,9 @@
 version: 2.1
 
 orbs:
-  win: circleci/windows@2.2.0
+  gcs: t3n/gcs@0.1.3
 
 jobs:
-  nodejs:
-    executor:
-      name: win/default
-      shell: powershell.exe
-  
-    steps:
-      - checkout
-      - run:
-          name: install packages
-          command: |     
-             cd node_js
-             npm install -g mocha chai
-             npm install chai
-             npm install -g mocha-junit-reporter
-             npm install mocha-junit-reporter --save-dev
-             
-      - run:
-          name: test
-          command: |
-             cd node_js
-             mocha test --reporter mocha-junit-reporter --reporter-options mochaFile=test-results.xml
-
-      - store_test_results:
-          path: node_js
 
   cmake_compile:
   
@@ -65,31 +41,13 @@ jobs:
       - store_test_results:
           path: ./plain_cmake/build/test
 
-  ros_docker:
-    docker:
-        - image: ros:melodic
-    
-    steps:
-      - checkout
-      - run:
-          name: install packages
-          command: |
-             sudo apt update
-             sudo apt install -y python-catkin-pkg python-rosdep python-wstool
-          
-      - run:
-          name: build
-          command: |       
-             mkdir -p catkin_ws/src
-             source /opt/ros/melodic/setup.bash
-             cd catkin_ws/src && catkin_init_workspace
-             cd ..
-             ln -s ../../test_node src
-             source /opt/ros/melodic/setup.bash && catkin_make
+      - persist_to_workspace:
+          root: public
+          paths:
+            - site
+
     
 workflows:
   main:
     jobs:
-      - ros_docker
       - cmake_compile
-      - nodejs
