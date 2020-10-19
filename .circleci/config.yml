@@ -55,8 +55,8 @@ jobs:
       - persist_to_workspace:
            root: .
            paths: plain_cmake/test-results.xml
-      - store_test_results:
-          path: ./plain_cmake           
+#      - store_test_results:
+#          path: ./plain_cmake           
 
 
   tests2:
@@ -77,8 +77,8 @@ jobs:
       - persist_to_workspace:
            root: .
            paths: plain_cmake/test-results2.xml
-      - store_test_results:
-          path: ./plain_cmake
+#      - store_test_results:
+#          path: ./plain_cmake
 
   export_results:
   
@@ -95,14 +95,19 @@ jobs:
       - store_test_results:
           path: ./plain_cmake
 
+
   save_artifact:
   
     machine:
       image: ubuntu-1604:202007-01
 
     steps:
-      - store_test_results:
-          path: ./plain_cmake/
+      - attach_workspace:
+          at: .    
+      - run:
+          command: |
+            ls -la    
+            ls -la ./plain_cmake
     
 workflows:
   main:
@@ -114,7 +119,15 @@ workflows:
       - tests2:
             requires:
             - compi
-#      - export_results:
-#            requires:
-#            - tests1
-#            - tests2
+      - export_results:
+            requires:
+            - tests1
+            - tests2
+      - wait_approval:
+          type: approval
+          requires:
+           - export_results
+           
+      - save_artifact:
+          requires:
+            - wait_approval
