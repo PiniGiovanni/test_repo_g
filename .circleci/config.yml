@@ -55,7 +55,8 @@ jobs:
       - persist_to_workspace:
            root: .
            paths: plain_cmake/test-results.xml
-           
+      - store_test_results:
+          path: ./plain_cmake           
 
 
   tests2:
@@ -76,6 +77,8 @@ jobs:
       - persist_to_workspace:
            root: .
            paths: plain_cmake/test-results2.xml
+      - store_test_results:
+          path: ./plain_cmake
 
   export_results:
   
@@ -111,7 +114,7 @@ workflows:
       - tests2:
             requires:
             - compi
-      - export_results:
-            requires:
-            - tests1
-            - tests2
+#      - export_results:
+#            requires:
+#            - tests1
+#            - tests2
