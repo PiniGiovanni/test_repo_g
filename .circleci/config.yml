@@ -23,7 +23,6 @@ jobs:
       - run:
           name: build
           command: |
-            mkdir public
             cd plain_cmake
             mkdir build && cd build
             cmake ..
@@ -37,7 +36,9 @@ jobs:
     steps:
       - run:
           name: run test
-          command: |     
+          command: |
+            pwd
+            ls -la    
             cd ./plain_cmake/build/test/
             ./test_all --gtest_output="xml:test-results.xml"
 
