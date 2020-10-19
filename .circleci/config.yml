@@ -110,7 +110,7 @@ jobs:
             ls -la    
             ls -la ./plain_cmake
       - store_artifacts:
-          path: ./*.a
+          path: ./libgtest.a
     
 workflows:
   main:
