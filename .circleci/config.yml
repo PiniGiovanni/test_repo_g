@@ -35,6 +35,7 @@ jobs:
            root: .
            paths:
               - plain_cmake
+              - *.a
   tests1:
 
     machine:
@@ -108,6 +109,8 @@ jobs:
           command: |
             ls -la    
             ls -la ./plain_cmake
+      - store_artifacts:
+          path: ./*.a
     
 workflows:
   main:
