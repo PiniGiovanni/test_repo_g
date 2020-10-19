@@ -89,7 +89,7 @@ workflows:
       - tests2:
             requires:
             - compi
-      - export_results
+      - export_results:
             requires:
-            - test 1
-            - test 2
+            - tests1
+            - tests2
