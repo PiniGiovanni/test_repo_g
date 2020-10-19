@@ -19,11 +19,12 @@ jobs:
             sudo cmake CMakeLists.txt
             sudo make
             sudo cp *.a ~/project/
-#sudo cp *.a /usr/lib
+            sudo cp *.a /usr/lib
 
       - run:
           name: build
           command: |
+            pwd
             ls -la
             cd plain_cmake
             mkdir build && cd build
