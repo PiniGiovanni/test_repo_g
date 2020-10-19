@@ -50,6 +50,11 @@ jobs:
             ls -la    
             cd ./plain_cmake/build/test/
             ./test_all --gtest_output="xml:test-results.xml"
+            mv test-results.xml ../../
+      - persist_to_workspace:
+           root: .
+           paths: plain_cmake/test-results.xml
+           
 
 
   tests2:
@@ -64,7 +69,11 @@ jobs:
           name: run test
           command: |     
             cd ./plain_cmake/build/test/
-            ./test_2 --gtest_output="xml:test-results.xml"
+            ./test_2 --gtest_output="xml:test-results2.xml"
+            mv test-results2.xml ../../
+      - persist_to_workspace:
+           root: .
+           paths: plain_cmake/test-results2.xml
 
   export_results:
   
@@ -72,6 +81,11 @@ jobs:
       image: ubuntu-1604:202007-01
 
     steps:
+      - attach_workspace:
+          at: .    
+      - run:
+          command: |
+            ls -la    
       - store_test_results:
           path: ./plain_cmake/build/test
 
