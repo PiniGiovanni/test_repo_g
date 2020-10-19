@@ -41,6 +41,8 @@ jobs:
       image: ubuntu-1604:202007-01
 
     steps:
+      - attach_workspace:
+          at: .
       - run:
           name: run test
           command: |
@@ -56,6 +58,8 @@ jobs:
       image: ubuntu-1604:202007-01
 
     steps:
+      - attach_workspace:
+          at: .    
       - run:
           name: run test
           command: |     
