@@ -5,12 +5,12 @@ on: [push]
 jobs:
   testdocker:
     runs-on: ubuntu-latest
-    container:
-      image: ros:melodic
-      options: --user 1001
+#    container:
+#      image: ros:melodic
     steps:  
     
     - uses: actions/checkout@v2
+    - uses: docker://ros:melodic  
     - name: install
       run: |
         sudo apt update
