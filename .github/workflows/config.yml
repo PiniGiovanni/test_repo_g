@@ -57,7 +57,7 @@ jobs:
       shell: bash
       # Execute the build.  You can specify a specific target with "--target <NAME>"
       run: |
-         cd plain_cmake /build
+         cd plain_cmake/build
          pwd
          ls -la
          make
