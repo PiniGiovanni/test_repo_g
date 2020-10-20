@@ -27,7 +27,7 @@ jobs:
       # docker entry point is in /__w/test_repo_g/YOUR_REPO_NAME
       run: |
         mkdir -p catkin_ws/src
-        source /opt/ros/melodic/setup.bash
+        . /opt/ros/melodic/setup.bash
         cd catkin_ws/src 
         catkin_init_workspace
         cd ..
