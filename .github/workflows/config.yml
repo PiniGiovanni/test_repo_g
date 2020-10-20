@@ -10,4 +10,13 @@ jobs:
     steps:  
     - uses: actions/checkout@v2
     - name: What OS is running
-      run: uname -a
+      run: |
+        uname -a
+        rosversion -d
+
+  anotherjob:
+    runs-on: ubuntu-latest
+    steps:  
+    - uses: actions/checkout@v2
+    - name: What OS is running
+      run: uname -a  
