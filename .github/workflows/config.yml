@@ -21,6 +21,7 @@ jobs:
          ls -la /opt/
          ls -la /opt/ros
          ls -la /opt/ros/melodic
+         whoami
         
     - name: build
       if: always()
@@ -29,5 +30,8 @@ jobs:
         mkdir -p catkin_ws/src
         rosdep update
         /bin/bash /opt/ros/melodic/setup.bash
-        cd catkin_ws
-        catkin__make
+        cd catkin_ws/src 
+        catkin_init_workspace
+        cd ..
+        ln -s ../test_node src
+        catkin_make
