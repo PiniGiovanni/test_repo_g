@@ -75,16 +75,16 @@ jobs:
 #      if: always()
 #      uses: mxschmitt/action-tmate@v3
 
-    name: Generate Test Reports
-    if: always()
-    steps:
-      - name: XUnit Viewer
-        id: xunit-viewer
-        uses: AutoModality/action-xunit-viewer@v1  
-      - name: Attach the report
-        uses: actions/upload-artifact@v1
-        with:
-          name: ${{ steps.xunit-viewer.outputs.report-name }}
-          path: ${{ steps.xunit-viewer.outputs.report-dir }}
+    
+    - name: XUnit Viewer
+      if: always()
+      id: xunit-viewer
+      uses: AutoModality/action-xunit-viewer@v1  
+    - name: Attach the report
+      if: always()
+      uses: actions/upload-artifact@v1
+      with:
+        name: ${{ steps.xunit-viewer.outputs.report-name }}
+        path: ${{ steps.xunit-viewer.outputs.report-dir }}
 
 
