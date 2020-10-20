@@ -10,13 +10,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: setup pacakges
+    - name: setup packages
       run: | 
         cd node_js
-        sudo npm install -g mocha chai
-        sudo npm install chai
-        sudo npm install -g mocha-junit-reporter
-        sudo npm install mocha-junit-reporter --save-dev
+        npm install -g mocha chai
+        npm install chai
+        npm install -g mocha-junit-reporter
+        npm install mocha-junit-reporter --save-dev
 
     - name: Run Test
       run: | 
