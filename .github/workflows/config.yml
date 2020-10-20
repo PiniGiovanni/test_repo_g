@@ -28,7 +28,7 @@ jobs:
       run: |
         mkdir -p catkin_ws/src
         # Do not use 'source', it will not work likely
-        sh /opt/ros/melodic/setup.sh
+        SHELL ["/bin/bash", “-c”] /opt/ros/melodic/setup.bash
         cd catkin_ws/src 
         catkin_init_workspace
         cd ..
