@@ -5,24 +5,15 @@ on: [push]
 jobs:
   testdocker:
     runs-on: ubuntu-latest
-#    container:
-#      image: ros:melodic
+    container:
+      image: ros:melodic
     steps:  
     
     - uses: actions/checkout@v2
-    - uses: docker://ros:melodic  
     - name: install
       run: |
         sudo apt update
         sudo apt install -y python-catkin-pkg python-rosdep python-wstool
-        
-    - name: test folders
-      run: |
-         ls -la
-         ls -la /opt/
-         ls -la /opt/ros
-         ls -la /opt/ros/melodic
-         whoami
         
     - name: build
       if: always()
@@ -32,7 +23,7 @@ jobs:
         rosdep update
         /bin/bash /opt/ros/melodic/setup.bash
         cd catkin_ws/src 
-        catkin_init_workspace
+        /opt/ros/melodic/bin/catkin_init_workspace
         cd ..
         ln -s ../test_node src
-        catkin_make
+        /opt/ros/melodic/bin/catkin_make
