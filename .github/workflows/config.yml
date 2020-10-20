@@ -71,9 +71,9 @@ jobs:
          cd plain_cmake/build
          ./test/test_all  --gtest_output="xml:test-results.xml"
 
-    - name: SSH debug
-      if: always()
-      uses: mxschmitt/action-tmate@v3
+#    - name: SSH debug
+#      if: always()
+#      uses: mxschmitt/action-tmate@v3
 
     - name: Generate Test Report
       # always run, even if test fail (that's when it gets interesting actually)
@@ -81,13 +81,13 @@ jobs:
       id: xunit-viewer
       uses: AutoModality/action-xunit-viewer@v1
       with:
-        results: plain_cmake/build/test/
+        results: plain_cmake/build/
         
     - name: Attach the report
       uses: actions/upload-artifact@v1
       with:
         name: alternate-results-path-reports
-        path: plain_cmake/build/test/
+        path: plain_cmake/build/
 
 
 
