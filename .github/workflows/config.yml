@@ -56,13 +56,11 @@ jobs:
       #working-directory: ${{runner.workspace}}/plain_cmake/build
       shell: bash
       # Execute the build.  You can specify a specific target with "--target <NAME>"
-      run: | 
+      run: |
+         cd plain_cmake /build
          pwd
          ls -la
          make
-         
-    - name: Debugging with tmate
-      uses: mxschmitt/action-tmate@v3
 
     - name: Test
       #working-directory: ${{runner.workspace}}/plain_cmake/build
