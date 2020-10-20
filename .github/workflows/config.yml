@@ -37,8 +37,10 @@ jobs:
       run: | 
          pwd
          ls -la
-         cd plain_cmake/build
-         cmake .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+         cd plain_cmake
+         ls -la
+         cd build
+         ls -la
 
     - name: Build
       working-directory: ${{runner.workspace}}/plain_cmake/build
