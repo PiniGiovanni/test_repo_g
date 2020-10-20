@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - node # Latest stable (can also use 14, 13...)
+
+before_install:
+- cd node_js
+- npm install chai
+- npm install mocha
+#- npm install mocha-xunit-reporter
+
+script:
+- mocha test
+
