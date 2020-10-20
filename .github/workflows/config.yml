@@ -23,17 +23,18 @@ jobs:
         cd node_js
         mocha test --reporter mocha-junit-reporter --reporter-options mochaFile=test-results.xml
 
-    - name: XUnit Viewer
-      if: always()
-      id: xunit-viewer
-      uses: AutoModality/action-xunit-viewer@v1  
-      with:
-          results: node_js
+# NOTE: the following would work if 'runs-on' is a linux machine. Not supported on windows or mac though
+#    - name: XUnit Viewer
+#      if: always()
+#      id: xunit-viewer
+#      uses: AutoModality/action-xunit-viewer@v1  
+#      with:
+#          results: node_js
           
-    - name: Attach the report
-      if: always()
-      uses: actions/upload-artifact@v1
-      with:
-        # note: this refers to previous step name
-        name: ${{ steps.xunit-viewer.outputs.report-name }}
-        path: ${{ steps.xunit-viewer.outputs.report-dir }}
+#    - name: Attach the report
+#      if: always()
+#      uses: actions/upload-artifact@v1
+#      with:
+#        # note: this refers to previous step name
+#        name: ${{ steps.xunit-viewer.outputs.report-name }}
+#        path: ${{ steps.xunit-viewer.outputs.report-dir }}
