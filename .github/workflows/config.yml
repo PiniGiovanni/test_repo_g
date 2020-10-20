@@ -8,15 +8,19 @@ jobs:
     container:
       image: ros:melodic
     steps:  
+    
     - uses: actions/checkout@v2
-    - name: What OS is running
+    - name: install
       run: |
-        uname -a
-        rosversion -d
+        sudo apt update
+        sudo apt install -y python-catkin-pkg python-rosdep python-wstool
+        
+    - name: build
+      run: |
+        mkdir -p catkin_ws/src
+        source /opt/ros/melodic/setup.bash
+        cd catkin_ws/src && catkin_init_workspace
+        cd ..
+        ln -s ../../test_node src
+        source /opt/ros/melodic/setup.bash && catkin_make
 
-  anotherjob:
-    runs-on: ubuntu-latest
-    steps:  
-    - uses: actions/checkout@v2
-    - name: What OS is running
-      run: uname -a  
