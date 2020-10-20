@@ -84,6 +84,7 @@ jobs:
         results: plain_cmake/build/
         
     - name: Attach the report
+      if: always()
       uses: actions/upload-artifact@v1
       with:
         name: alternate-results-path-reports
