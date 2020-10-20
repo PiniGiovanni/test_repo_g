@@ -14,12 +14,19 @@ jobs:
       run: |
         sudo apt update
         sudo apt install -y python-catkin-pkg python-rosdep python-wstool
-        
-    - name: build
+     
+    - name: test cmd     
       run: |
-        mkdir -p catkin_ws/src
-        source /opt/ros/melodic/setup.bash
-        cd catkin_ws/src && catkin_init_workspace
-        cd ..
-        ln -s /github/workspace/test_node src
-        source /opt/ros/melodic/setup.bash && catkin_make
+         pwd
+         ls -la
+         ls /
+         ls -la /github
+        
+#    - name: build
+#      run: |
+#        mkdir -p catkin_ws/src
+#        source /opt/ros/melodic/setup.bash
+#        cd catkin_ws/src && catkin_init_workspace
+#        cd ..
+#        ln -s /github/workspace/test_node src
+#        source /opt/ros/melodic/setup.bash && catkin_make
