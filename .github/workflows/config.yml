@@ -29,7 +29,6 @@ jobs:
         mkdir -p catkin_ws/src
         sudo rosdep init
         rosdep update
-# Do not use 'source', it will not work
         /bin/bash /opt/ros/melodic/setup.bash
         cd catkin_ws/src 
         catkin_init_workspace
