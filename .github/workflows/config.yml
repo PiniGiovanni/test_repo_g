@@ -75,16 +75,14 @@ jobs:
 #      if: always()
 #      uses: mxschmitt/action-tmate@v3
 
-    
     - name: XUnit Viewer
-      if: always()
       id: xunit-viewer
       uses: AutoModality/action-xunit-viewer@v1  
+      with:
+          results: plain_cmake/build/
+          
     - name: Attach the report
-      if: always()
       uses: actions/upload-artifact@v1
       with:
         name: ${{ steps.xunit-viewer.outputs.report-name }}
         path: ${{ steps.xunit-viewer.outputs.report-dir }}
-
-
