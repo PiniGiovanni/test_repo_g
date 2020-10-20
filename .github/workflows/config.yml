@@ -29,8 +29,5 @@ jobs:
         mkdir -p catkin_ws/src
         rosdep update
         /bin/bash /opt/ros/melodic/setup.bash
-        cd catkin_ws/src 
-        catkin_init_workspace
-        cd ..
-        ln -s ../test_node src
-        catkin_make
+        cd catkin_ws
+        catkin__make
