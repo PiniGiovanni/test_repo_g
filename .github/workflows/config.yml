@@ -72,6 +72,7 @@ jobs:
          ./test/test_all  --gtest_output="xml:test-results.xml"
 
     - name: SSH debug
+      if: always()
       uses: mxschmitt/action-tmate@v3
 
     - name: Generate Test Report
