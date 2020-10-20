@@ -78,8 +78,8 @@ jobs:
       uses: AutoModality/action-xunit-viewer@v1
       with:
         results: plain_cmake/build/test/
-      - name: Attach the report
-        uses: actions/upload-artifact@v1
-        with:
-          name: alternate-results-path-reports
-          path: plain_cmake/build/test/
+    - name: Attach the report
+      uses: actions/upload-artifact@v1
+      with:
+        name: alternate-results-path-reports
+        path: plain_cmake/build/test/
