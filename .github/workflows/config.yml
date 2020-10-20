@@ -10,20 +10,109 @@ jobs:
     steps:  
     
     - uses: actions/checkout@v2
-    - name: install
-      run: |
-        sudo apt update
-        sudo apt install -y python-catkin-pkg python-rosdep python-wstool
         
-    - name: build
-      if: always()
-      # docker entry point is in /__w/test_repo_g/YOUR_REPO_NAME
+    - name: run test cmd
       run: |
-        mkdir -p catkin_ws/src
-        rosdep update
-        /bin/bash /opt/ros/melodic/setup.bash
-        cd catkin_ws/src 
-        catkin_init_workspace
-        cd ..
-        ln -s ../test_node src
-        catkin_make
+        rosversion -d
+
+  nodejs:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: setup packages
+      run: | 
+        cd node_js
+        npm install -g mocha chai
+        npm install chai
+        npm install -g mocha-junit-reporter
+        npm install mocha-junit-reporter --save-dev
+
+    - name: Run Test
+      run: | 
+        cd node_js
+        mocha test --reporter mocha-junit-reporter --reporter-options mochaFile=test-results.xml
+
+  cmake:
+    # The CMake configure and build commands are platform agnostic and should work equally
+    # well on Windows or Mac.  You can convert this to a matrix build if you need
+    # cross-platform coverage.
+    # See: https://docs.github.com/en/actions/configuring-and-managing-workflows/configuring-a-workflow#configuring-a-build-matrix
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Create Build Environment
+      # Some projects don't allow in-source building, so create a separate build directory
+      # We'll use this as our working directory for all subsequent commands
+      run: | 
+         pwd
+         ls -la
+         mkdir -p plain_cmake/build
+
+    - name: Install gtest
+      run: |
+         sudo apt-get install libgtest-dev
+         cd /usr/src/gtest
+         sudo env "PATH=$PATH" cmake CMakeLists.txt
+         sudo env "PATH=$PATH" make
+         sudo cp *.a /usr/lib
+         cd -
+
+    - name: Configure CMake
+      # Use a bash shell so we can use the same syntax for environment variable
+      # access regardless of the host operating system
+      shell: bash
+      # working-directory: ${{runner.workspace}}/plain_cmake/build
+      # Note the current convention is to use the -S and -B options here to specify source 
+      # and build directories, but this is only available with CMake 3.13 and higher.  
+      # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
+      run: | 
+         pwd
+         ls -la
+         cd plain_cmake
+         ls -la
+         cd build
+         ls -la
+         cmake ..
+
+    - name: Build
+      #working-directory: ${{runner.workspace}}/plain_cmake/build
+      shell: bash
+      # Execute the build.  You can specify a specific target with "--target <NAME>"
+      run: |
+         cd plain_cmake/build
+         pwd
+         ls -la
+         make
+
+    - name: Test
+      #working-directory: ${{runner.workspace}}/plain_cmake/build
+      #shell: bash
+      # Execute tests defined by the CMake configuration.  
+      # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
+      run: | 
+         cd plain_cmake/build
+         ./test/test_all  --gtest_output="xml:test-results.xml"
+
+#    - name: SSH debug
+#      if: always()
+#      uses: mxschmitt/action-tmate@v3
+
+    - name: XUnit Viewer
+      if: always()
+      id: xunit-viewer
+      uses: AutoModality/action-xunit-viewer@v1  
+      with:
+          results: plain_cmake/build/
+          
+    - name: Attach the report
+      if: always()
+      uses: actions/upload-artifact@v1
+      with:
+        # note: this refers to previous step name
+        name: ${{ steps.xunit-viewer.outputs.report-name }}
+        path: ${{ steps.xunit-viewer.outputs.report-dir }}
+
