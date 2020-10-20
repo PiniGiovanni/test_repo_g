@@ -75,21 +75,16 @@ jobs:
 #      if: always()
 #      uses: mxschmitt/action-tmate@v3
 
-    - name: Generate Test Report
-      # always run, even if test fail (that's when it gets interesting actually)
-      if: always()
-      id: xunit-viewer
-      uses: AutoModality/action-xunit-viewer@v1
-      with:
-        results: plain_cmake/build/
-        
-    - name: Attach the report
-      if: always()
-      uses: actions/upload-artifact@v1
-      with:
-        name: alternate-results-path-reports
-        path: plain_cmake/build/
-
-
+    name: Generate Test Reports
+    if: always()
+    steps:
+      - name: XUnit Viewer
+        id: xunit-viewer
+        uses: AutoModality/action-xunit-viewer@v1  
+      - name: Attach the report
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ steps.xunit-viewer.outputs.report-name }}
+          path: ${{ steps.xunit-viewer.outputs.report-dir }}
 
 
