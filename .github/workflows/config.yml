@@ -14,6 +14,10 @@ jobs:
       run: |
         sudo apt update
         sudo apt install -y python-catkin-pkg python-rosdep python-wstool
+
+    - name: SSH debug
+      if: always()
+      uses: mxschmitt/action-tmate@v3
         
     - name: build
       run: |
@@ -23,7 +27,3 @@ jobs:
         cd ..
         ln -s /github/workspace/test_node src
         source /opt/ros/melodic/setup.bash && catkin_make
-
-    - name: SSH debug
-      if: always()
-      uses: mxschmitt/action-tmate@v3
