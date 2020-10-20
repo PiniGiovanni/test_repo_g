@@ -3,38 +3,11 @@ name: nodejs
 on: [push]
 
 jobs:
-
-  build:
-    runs-on: windows-latest
-
-    steps:
+  testdocker:
+    runs-on: ubuntu-latest
+    container:
+      image: ros:melodic
+    steps:  
     - uses: actions/checkout@v2
-
-    - name: setup packages
-      run: | 
-        cd node_js
-        npm install -g mocha chai
-        npm install chai
-        npm install -g mocha-junit-reporter
-        npm install mocha-junit-reporter --save-dev
-
-    - name: Run Test
-      run: | 
-        cd node_js
-        mocha test --reporter mocha-junit-reporter --reporter-options mochaFile=test-results.xml
-
-# NOTE: the following would work if 'runs-on' is a linux machine. Not supported on windows or mac though
-#    - name: XUnit Viewer
-#      if: always()
-#      id: xunit-viewer
-#      uses: AutoModality/action-xunit-viewer@v1  
-#      with:
-#          results: node_js
-          
-#    - name: Attach the report
-#      if: always()
-#      uses: actions/upload-artifact@v1
-#      with:
-#        # note: this refers to previous step name
-#        name: ${{ steps.xunit-viewer.outputs.report-name }}
-#        path: ${{ steps.xunit-viewer.outputs.report-dir }}
+    - name: What OS is running
+      run: uname -a
