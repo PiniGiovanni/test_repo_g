@@ -52,18 +52,16 @@ jobs:
          ls -la
          cmake ..
 
-    - name: Debugging with tmate
-      uses: mxschmitt/action-tmate@v3
-
     - name: Build
-      working-directory: ${{runner.workspace}}/plain_cmake/build
+      #working-directory: ${{runner.workspace}}/plain_cmake/build
       shell: bash
       # Execute the build.  You can specify a specific target with "--target <NAME>"
-      run: make
+      run: | 
+         make
 
-#    - name: Test
+    - name: Test
       #working-directory: ${{runner.workspace}}/plain_cmake/build
       #shell: bash
       # Execute tests defined by the CMake configuration.  
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-      #run: ctest -C $BUILD_TYPE
+      run: ./test/test_all  --gtest_output="xml:test-results.xml"
